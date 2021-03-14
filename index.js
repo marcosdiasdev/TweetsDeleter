@@ -2,9 +2,7 @@ require('dotenv').config();
 const Twitter = require('twitter');
 const fs = require('fs');
 
-// According to Twitter API the max requests number is 300 every 3 hours
-// We'll just set it to 250 for security reasons
-const maxRequests = 2; 
+const maxRequests = Number(process.env.MAX_REQUESTS);
 
 const client = new Twitter({
   consumer_key: process.env.CONSUMER_KEY,
@@ -59,7 +57,6 @@ function execute() {
     return false;
   });
 
-  // Update JSON file with the tweets left
   updateJSONFileWith(rest);
 }
 
