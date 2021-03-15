@@ -57,6 +57,7 @@ function execute() {
     return false;
   });
 
+  console.log(`${rest.length} tweets left.`);
   updateJSONFileWith(rest);
 }
 
