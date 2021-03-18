@@ -22,11 +22,7 @@ function getTweetsFromTweetJs() {
   return tweets;
 }
 
-function createJSONFileFrom(tweets) {
-  fs.writeFileSync('tweets.json', JSON.stringify(tweets));
-}
-
-function updateJSONFileWith(tweets) {
+function saveJSONFileWith(tweets) {
   fs.writeFileSync('tweets.json', JSON.stringify(tweets));
 }
 
@@ -39,7 +35,7 @@ function execute() {
     if(error.code === 'ENOENT') {
       console.log(`JSON file not found. Will create a new JSON file from tweet.js.`);
       tweets = getTweetsFromTweetJs();
-      createJSONFileFrom(tweets);
+      saveJSONFileWith(tweets);
     } else {
       throw error;
     }
@@ -58,7 +54,7 @@ function execute() {
   });
 
   console.log(`${rest.length} tweets left.`);
-  updateJSONFileWith(rest);
+  saveJSONFileWith(rest);
 }
 
 execute();
